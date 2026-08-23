@@ -1,0 +1,39 @@
+package com.library.model;
+
+public class Book {
+
+	private int bookId;
+	private String bookName;
+	private String author;
+	private String category;
+	private int quantity;
+
+	public Book(int bookId, String bookName, String author, String category, int quantity) {
+
+		this.bookId = bookId;
+		this.bookName = bookName;
+		this.author = author;
+		this.category = category;
+		this.quantity = quantity;
+	}
+
+	public int getBookId() {
+		return bookId;
+	}
+
+	public String getBookName() {
+		return bookName;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+}

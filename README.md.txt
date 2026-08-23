@@ -19,6 +19,24 @@ A JDBC-based application for managing student information.
 - Marks Entry
 - Result Generation
 
+#### Tables
+
+- students
+- courses
+- enrollments
+- attendance
+- marks
+
+#### JDBC Concepts
+
+- CRUD Operations
+- PreparedStatement
+- Foreign Keys
+- JOIN
+- Transactions
+- Commit / Rollback
+- Exception Handling
+
 #### Technologies
 
 - Java
@@ -41,6 +59,12 @@ A JDBC-based application for managing employees and their leave requests.
 - Approve / Reject Leave
 - Leave Balance Tracking
 
+#### Tables
+
+- employees
+- leave_requests
+- leave_balance
+
 #### JDBC Concepts
 
 - CRUD Operations
@@ -59,13 +83,56 @@ A JDBC-based application for managing employees and their leave requests.
 
 ---
 
-## Repository Structure
+### 3. Library Management System
+
+A JDBC-based application for managing books, members, and book issue/return operations.
+
+#### Modules
+
+- Add Book
+- View Books
+- Search Book
+- Add Member
+- View Members
+- Search Member
+- Issue Book
+- Return Book
+- View Issued Books
+- Fine Calculation
+
+#### Tables
+
+- books
+- members
+- book_issues
+
+#### JDBC Concepts
+
+- CRUD Operations
+- PreparedStatement
+- Foreign Keys
+- JOIN
+- Transactions
+- Commit / Rollback
+- Exception Handling
+- Fine Calculation
+
+#### Technologies
+
+- Java
+- JDBC
+- MySQL
+- Eclipse
+
+---
+
+## Database Structure
+
+### Student Management System
 
 ```text
-Java-JDBC-Management-Systems
-│
-├── StudentManagementSystem
-│
-├── EmployeeLeaveManagement
-│
-└── README.md
+students
+courses
+enrollments
+attendance
+marks

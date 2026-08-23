@@ -1,0 +1,93 @@
+-- Employee Leave Management System
+
+
+-- Create database
+CREATE DATABASE IF NOT EXISTS employee_leave_system;
+USE employee_leave_system;
+
+
+-- Employees table
+CREATE TABLE employees (
+    employee_id INT PRIMARY KEY,
+    employee_name VARCHAR(100) NOT NULL,
+    department VARCHAR(50),
+    designation VARCHAR(50));
+
+
+-- Leave Balance table
+CREATE TABLE leave_balance (
+    balance_id INT PRIMARY KEY,
+    employee_id INT NOT NULL,
+    total_leave INT DEFAULT 12,
+    used_leave INT DEFAULT 0,
+    remaining_leave INT DEFAULT 12,
+
+    FOREIGN KEY (employee_id)
+        REFERENCES employees(employee_id));
+
+
+-- Leave Requests table
+CREATE TABLE leave_requests (
+    leave_id INT PRIMARY KEY,
+    employee_id INT NOT NULL,
+    leave_type VARCHAR(50) NOT NULL,
+    from_date DATE NOT NULL,
+    to_date DATE NOT NULL,
+    status VARCHAR(20) DEFAULT 'Pending',
+
+    FOREIGN KEY (employee_id)
+        REFERENCES employees(employee_id));
+
+
+-- Insert employees
+INSERT INTO employees VALUES
+(101, 'Arun', 'IT', 'Developer'),
+(102, 'Priya', 'HR', 'HR Executive'),
+(103, 'Karthik', 'Finance', 'Accountant'),
+(104, 'Meena', 'IT', 'Tester'),
+(105, 'Rahul', 'Admin', 'Administrator');
+
+
+-- Insert leave balances
+INSERT INTO leave_balance VALUES
+(1, 101, 12, 2, 10),
+(2, 102, 12, 1, 11),
+(3, 103, 12, 3, 9),
+(4, 104, 12, 0, 12),
+(5, 105, 12, 2, 10);
+
+
+-- Insert leave requests
+INSERT INTO leave_requests VALUES
+(2001, 101, 'Medical', '2026-08-10', '2026-08-11', 'Approved'),
+(2002, 102, 'Casual', '2026-08-15', '2026-08-16', 'Pending'),
+(2003, 103, 'Personal', '2026-08-18', '2026-08-19', 'Rejected'),
+(2004, 104, 'Casual', '2026-08-20', '2026-08-21', 'Approved'),
+(2005, 105, 'Medical', '2026-08-22', '2026-08-23', 'Pending');
+
+
+-- Join: Leave request details
+SELECT
+    lr.leave_id,
+    e.employee_id,
+    e.employee_name,
+    e.department,
+    lr.leave_type,
+    lr.from_date,
+    lr.to_date,
+    lr.status
+FROM leave_requests lr
+JOIN employees e
+    ON lr.employee_id = e.employee_id;
+
+
+-- Join: Employee leave balance
+SELECT
+    e.employee_id,
+    e.employee_name,
+    lb.total_leave,
+    lb.used_leave,
+    lb.remaining_leave
+FROM employees e
+JOIN leave_balance lb
+    ON e.employee_id = lb.employee_id;

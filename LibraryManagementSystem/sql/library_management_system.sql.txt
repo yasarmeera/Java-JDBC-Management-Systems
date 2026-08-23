@@ -1,0 +1,98 @@
+-- Library Management System
+
+
+-- Create database
+
+CREATE DATABASE IF NOT EXISTS library_management_system;
+USE library_management_system;
+
+
+-- Books table
+CREATE TABLE books (
+    book_id INT PRIMARY KEY,
+    book_name VARCHAR(100) NOT NULL,
+    author VARCHAR(100) NOT NULL,
+    category VARCHAR(50),
+    quantity INT NOT NULL);
+
+
+-- Members table
+CREATE TABLE members (
+    member_id INT PRIMARY KEY,
+    member_name VARCHAR(100) NOT NULL,
+    phone VARCHAR(15),
+    email VARCHAR(100));
+
+
+-- Book Issues table
+CREATE TABLE book_issues (
+    issue_id INT PRIMARY KEY,
+    book_id INT NOT NULL,
+    member_id INT NOT NULL,
+    issue_date DATE NOT NULL,
+    return_date DATE,
+    status VARCHAR(20) DEFAULT 'Issued',
+
+    FOREIGN KEY (book_id)
+        REFERENCES books(book_id),
+
+    FOREIGN KEY (member_id)
+        REFERENCES members(member_id));
+
+
+-- Insert books
+INSERT INTO books VALUES
+(1, 'Java Programming', 'James Gosling', 'Programming', 5),
+(2, 'Python Basics', 'Mark Lutz', 'Programming', 4),
+(3, 'Database Systems', 'Raghu Ramakrishnan', 'Database', 3),
+(4, 'HTML and CSS', 'Jon Duckett', 'Web Development', 6),
+(5, 'Spring Boot Guide', 'Craig Walls', 'Programming', 2);
+
+
+-- Insert members
+INSERT INTO members VALUES
+(101, 'Arun', '9876543210', 'arun@gmail.com'),
+(102, 'Priya', '9876543211', 'priya@gmail.com'),
+(103, 'Karthik', '9876543212', 'karthik@gmail.com'),
+(104, 'Meena', '9876543213', 'meena@gmail.com'),
+(105, 'Rahul', '9876543214', 'rahul@gmail.com');
+
+
+-- Insert book issues
+INSERT INTO book_issues VALUES
+(2001, 1, 101, '2026-08-10', NULL, 'Issued'),
+(2002, 2, 102, '2026-08-11', '2026-08-15', 'Returned'),
+(2003, 3, 103, '2026-08-12', NULL, 'Issued'),
+(2004, 4, 104, '2026-08-13', '2026-08-17', 'Returned'),
+(2005, 5, 105, '2026-08-14', NULL, 'Issued');
+
+
+
+-- Join: Book issue details
+SELECT
+    bi.issue_id,
+    b.book_name,
+    m.member_name,
+    bi.issue_date,
+    bi.return_date,
+    bi.status
+FROM book_issues bi
+JOIN books b
+    ON bi.book_id = b.book_id
+JOIN members m
+    ON bi.member_id = m.member_id;
+
+
+-- Join: Member book details
+SELECT
+    m.member_id,
+    m.member_name,
+    b.book_name,
+    bi.issue_date,
+    bi.return_date,
+    bi.status
+FROM book_issues bi
+JOIN members m
+    ON bi.member_id = m.member_id
+JOIN books b
+    ON bi.book_id = b.book_id;
