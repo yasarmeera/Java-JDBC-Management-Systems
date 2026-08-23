@@ -37,13 +37,6 @@ A JDBC-based application for managing student information.
 - Commit / Rollback
 - Exception Handling
 
-#### Technologies
-
-- Java
-- JDBC
-- MySQL
-- Eclipse
-
 ---
 
 ### 2. Employee Leave Management System
@@ -73,13 +66,6 @@ A JDBC-based application for managing employees and their leave requests.
 - Transactions
 - Commit / Rollback
 - Exception Handling
-
-#### Technologies
-
-- Java
-- JDBC
-- MySQL
-- Eclipse
 
 ---
 
@@ -117,22 +103,3 @@ A JDBC-based application for managing books, members, and book issue/return oper
 - Exception Handling
 - Fine Calculation
 
-#### Technologies
-
-- Java
-- JDBC
-- MySQL
-- Eclipse
-
----
-
-## Database Structure
-
-### Student Management System
-
-```text
-students
-courses
-enrollments
-attendance
-marks
